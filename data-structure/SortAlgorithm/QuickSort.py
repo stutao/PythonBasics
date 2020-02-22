@@ -80,7 +80,7 @@ def quick_sort1(alist, start, end):
     quick_sort1(alist, low + 1, end)
 
 
-# 3,根据分治思想,结合python特性的版本---学习自菜鸟驿站.
+# 3,根据分治思想,结合python特性的版本---学习自菜鸟驿站.这个好像时间复杂度要高
 def quick_sort2(lst: list):
     if len(lst) <= 1:
         return lst

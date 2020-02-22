@@ -33,6 +33,17 @@ class Solution:
         # python中or运算,从左往右,碰到True就返回,and是碰到false
         return l1 or l2
 
+    # 这个比较好理解
+    def mergeTwoLists2(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1: return l2  # 终止条件，直到两个链表都空
+        if not l2: return l1
+        if l1.val <= l2.val:  # 递归调用
+            l1.next = self.mergeTwoLists2(l1.next, l2)
+            return l1
+        else:
+            l2.next = self.mergeTwoLists2(l1, l2.next)
+            return l2
+
 
 if __name__ == '__main__':
     s = Solution()
@@ -43,7 +54,7 @@ if __name__ == '__main__':
     l2 = ListNode(1)
     l2.next = ListNode(2)
     l2.next.next = ListNode(3)
-    p = s.mergeTwoLists(l1, l2)
+    p = s.mergeTwoLists2(l1, l2)
     while True:
         if p.next:
             print(p.val, end="->")
