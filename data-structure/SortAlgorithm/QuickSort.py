@@ -122,12 +122,119 @@ def quick_sort3(arr, low, high):
         quick_sort3(arr, pi + 1, high)
 
 
+# 非递归快排,网络上收集来学习.
+def qs(alist, start, end):
+    if start >= end:
+        return
+
+    indexList = []
+    indexList.append(start)
+    indexList.append(end)
+
+    # 判断条件是栈非空
+    while len(indexList) > 0:
+        priviorIndex = indexList[0]
+        privior = alist[indexList[0]]
+        low = indexList[0]
+        hight = indexList[1]
+
+        while low < hight:
+
+            # 必须先写右边的,没办法的,否则hight的值会被冲掉,这是代码的问题
+            while alist[hight] >= privior and low < hight:
+                hight = hight - 1
+            alist[low] = alist[hight]
+            while alist[low] <= privior and low < hight:
+                low = low + 1
+            alist[hight] = alist[low]
+
+        alist[priviorIndex] = alist[low]
+        alist[low] = privior
+
+        # 其实使用递归的时候,可见其保存的现场就是三个东西,
+        # alist,下一步快排的左边界,下一步快排的右边界,
+        # 我们只需要手工保存这几个现场,并且在必要的时候弹出栈即可,下面的两个if就是保存现场
+        if low > indexList[0]:
+            indexList.append(indexList[0])
+            indexList.append(low)
+
+        if hight < indexList[1]:
+            indexList.append(low + 1)
+            indexList.append(indexList[1])
+
+        # 这里就是弹出栈的代码
+        indexList.pop(0)
+        indexList.pop(0)
+
+
+def my_qs(alist, s, e):
+    if len(alist) <= 1:
+        return
+
+    # 借助栈来实现递归
+    stack_ = []
+    stack_.append(e)
+    stack_.append(s)
+
+    # 当栈不空继续往下
+    while stack_:
+        l = stack_.pop()
+        h = stack_.pop()
+        start, end = l, h
+
+        # 快排主要内容.... 可以采用外调函数的方式..
+        # index = qs_main(alist, l, h)
+        pivot = alist[start]
+        while start < end:
+            while alist[end] >= pivot and start < end:
+                end -= 1
+            alist[start] = alist[end]
+            while alist[start] < pivot and start < end:
+                start += 1
+            alist[end] = alist[start]
+
+        alist[start] = pivot
+
+        # 正常的保存是下面这样的,原序列,开始位置,结束位置
+        # quick_sort1(alist, start, low - 1)
+        # 对基准元素右边的子序列进行快速排序
+        # quick_sort1(alist, low + 1, end)
+        # 把左边和右边对应的在列表中的下标传入,通过pop弹出对应的一对位置进行排序赋值,更新原列表顺序
+        # 知道弹出栈中所有的元素
+        if l < start - 1:
+            stack_.append(start - 1)
+            stack_.append(l)
+        if h > start + 1:
+            stack_.append(h)
+            stack_.append(start + 1)
+
+
+def qs_main(alist, start, end):
+    # 快排主要内容
+    pivot = alist[start]
+    while start < end:
+        while alist[end] >= pivot and start < end:
+            end -= 1
+        alist[start] = alist[end]
+        while alist[start] < pivot and start < end:
+            start += 1
+        alist[end] = alist[start]
+
+    alist[start] = pivot
+
+    return start
+
+
 if __name__ == '__main__':
-    alist = [12, 3, 8, 9, 13, 4, 7, 6]
+    import random
+
+    alist = [random.randint(1, 100) for _ in range(10)]
     print('原来序列:', alist)
-    r = quick_sort(alist)
-    print('有序序列r:', r)
-    r1 = quick_sort2(alist)
-    print('有序序列r1', r1)
-    quick_sort3(alist, 0, len(alist) - 1)
-    print('对alist直接排列', alist)
+    # r = quick_sort(alist)
+    # print('有序序列r:', r)
+    # r1 = quick_sort2(alist)
+    # print('有序序列r1', r1)
+    my_qs(alist, 0, len(alist) - 1)
+    print('直接排列', alist)
+    # quick_sort3(alist, 0, len(alist) - 1)
+    # print('对alist直接排列', alist)
