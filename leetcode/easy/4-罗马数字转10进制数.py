@@ -80,9 +80,9 @@ def roma_to_int_re(s):
         'CD': 400,
         'CM': 900,
     }
-    spacial = [d[c] for c in re.findall('IV|IX|XL|XC|CD|CM', s)]
+    special = [d[c] for c in re.findall('IV|IX|XL|XC|CD|CM', s)]
     rest = [d[c] for c in re.sub('IV|IX|XL|XC|CD|CM', '', s)]
-    return sum(spacial) + sum(rest)
+    return sum(special) + sum(rest)
 
 # 应该还有一种方法 将所有特殊情况放入hash表,然后字符串截取出来去比较,
 # 两个的不匹配就一个一个去取数,然后从这个位置开始从新来过.
