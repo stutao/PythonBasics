@@ -348,33 +348,33 @@ class SClist(object):
 
 
 if __name__ == '__main__':
-# import random
-#
-# # 不重复的数
-# random_list = random.sample(range(1, 2000000), 200)
-# print("总长:%s,去重后%s" % (len(random_list), len(set(random_list))))
-# # 可以重复的
-# list1 = [random.choice(range(1,3000)) for _ in range(200)]
-# print("总长:%s,去重后%s" % (len(list1), len(set(list1))))
+    # import random
+    #
+    # # 不重复的数
+    # random_list = random.sample(range(1, 2000000), 200)
+    # print("总长:%s,去重后%s" % (len(random_list), len(set(random_list))))
+    # # 可以重复的
+    # list1 = [random.choice(range(1,3000)) for _ in range(200)]
+    # print("总长:%s,去重后%s" % (len(list1), len(set(list1))))
 
-# 单链表
-# Llist = LListRepr()
-# for i in range(6):
-#     Llist.prepend(i)
-# # for j in range(10, 18):
-# #     Llist.append(j)
-# Llist.printall()
-# # print(Llist.pop())
-# print(Llist.pop(0))
-# print("-" * 30)
-# for i in Llist.elements():
-#     print(i, end=" ")
-# LClist = LList()
-# for i in range(6):
-#     LClist.prepend(i)
-#
-# LClist.printall()
-# # LClist.reverse1()
-# LClist.sort()
-# LClist.printall()
+    # 单链表
+    # Llist = LListRepr()
+    # for i in range(6):
+    #     Llist.prepend(i)
+    # # for j in range(10, 18):
+    # #     Llist.append(j)
+    # Llist.printall()
+    # # print(Llist.pop())
+    # print(Llist.pop(0))
+    # print("-" * 30)
+    # for i in Llist.elements():
+    #     print(i, end=" ")
+    # LClist = LList()
+    # for i in range(6):
+    #     LClist.prepend(i)
+    #
+    # LClist.printall()
+    # # LClist.reverse1()
+    # LClist.sort()
+    # LClist.printall()
     print(1)

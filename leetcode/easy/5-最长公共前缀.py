@@ -28,10 +28,9 @@ __author__ = "TomTao"
 # 方式一,暴力法 执行实现40ms
 # 时间复杂度估计是o(n^2)?遍历列表,然后遍历字符串?我算不怎么来..尴尬
 def longestCommonPrefix(strs) -> str:
-    if len(strs) == 1:
-        return strs[0]
-    elif len(strs) == 0:
-        return ""
+    if len(strs) <= 1:
+        return strs
+
     else:
         count_li = []
         for i in range(1, len(strs)):
@@ -98,6 +97,6 @@ zip之后结果是[a,a,a],[b,b,b],[c,d,c],很巧,他又会顺序进行下去.
 '''
 
 if __name__ == '__main__':
-    print(longestCommonPrefix(['aba','abb','abac']))
-    print(longestCommonPrefix2(['aba','abb','abac']))
-    print(longestCommonPrefix3(['aba','abb','abac']))
+    print(longestCommonPrefix(['aba', 'abb', 'abac']))
+    print(longestCommonPrefix2(['aba', 'abb', 'abac']))
+    print(longestCommonPrefix3(['aba', 'abb', 'abac']))

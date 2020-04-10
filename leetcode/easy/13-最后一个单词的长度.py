@@ -22,7 +22,7 @@ class Solution:
         # 去空格的方式可以用strip,当然最好不用
         if not all([s,s.strip()]):
             return 0
-        # 看下最后是不是空格开头？是的话就把他截断了
+        # 看下最后是不是空格结尾？是的话就把他截断了
         while s.endswith(" "):
             s = s[:-1]
         # 从右往左找第一个空格.
